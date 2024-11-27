@@ -4,6 +4,8 @@ on: [deployment_status]
 
 jobs:
   notify:
+    environment:
+      name: ${{github.event.deployment_status.environment}}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
