@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Notify
-        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
+        # if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
         uses: slackapi/slack-github-action@v1.25.0
         with:
           channel-id: 'C068WRUU9QR'
@@ -20,13 +20,14 @@ jobs:
                   "fields": [
                     {
                       "type": "mrkdwn",
-                      "text": "@channel \n *creator-system-front ${{ env.ENV_NAME }}デプロイが${{ env.DEPLOY_RESULT}}しました。*"
+                      "text": "@channel \n *creator-system-front ${{ env.ENV_NAME }}デプロイが${{ env.DEPLOY_RESULT}}しました。* \n ブランチ: ${{ github.ref }}"
                     }
                   ]
                 }
               ]
             }
         env:
+          BRANCH: ${{ github.ref }}
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           ENV_NAME: ${{ github.ref == 'refs/heads/main' && '本番' || 'ステージング' }}
           DEPLOY_RESULT: ${{ github.event.deployment_status.state == 'success' && '完了' || '失敗' }}
