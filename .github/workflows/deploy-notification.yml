@@ -20,7 +20,7 @@ jobs:
                   "fields": [
                     {
                       "type": "mrkdwn",
-                      "text": "@channel \n *creator-system-front ${{ env.ENV_NAME }}デプロイが${{ env.DEPLOY_RESULT}}しました。* \n ブランチ: ${{ env.BRANCH }}"
+                      "text": "@channel \n *creator-system-front ${{ env.ENV_NAME }}デプロイが${{ env.DEPLOY_RESULT}}しました。* \n ブランチ: ${{ github.ref }}"
                     }
                   ]
                 }
