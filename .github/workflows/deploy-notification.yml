@@ -1,6 +1,6 @@
 name: Deploy Notification
 
-on: [deployment]
+on: [deployment_status]
 
 jobs:
   notify:
@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Loging
         run: |
-          echo ${{ toJson(github) }}
+          echo ${{ github.event.deployment_status }}
 
       - name: Notify
         # if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
