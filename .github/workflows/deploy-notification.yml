@@ -1,0 +1,42 @@
+name: Deploy Notification
+
+on: [deployment_status]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Loging
+        run: |
+          echo ${{ github.event.deployment_status.state }}
+          echo ${{ github.ref }}
+          echo ${{ github.ref_name }}
+          echo ${{ toJson(github.event) }}
+          echo ${{ toJson(github) }}
+
+
+      - name: Notify
+        # if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
+        uses: slackapi/slack-github-action@v1.25.0
+        with:
+          channel-id: 'C068WRUU9QR'
+          payload: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "@channel \n *creator-system-front ${{ env.ENV_NAME }}デプロイが${{ env.DEPLOY_RESULT}}しました。* \n ブランチ: ${{ env.BRANCH }}"
+                    }
+                  ]
+                }
+              ]
+            }
+        env:
+          BRANCH: ${{ github.ref_name }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          ENV_NAME: ${{ github.ref == 'refs/heads/main' && '本番' || 'ステージング' }}
+          DEPLOY_RESULT: ${{ github.event.deployment_status.state == 'success' && '完了' || '失敗' }}
