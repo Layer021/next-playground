@@ -7,9 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Loging
-        run: |
-          echo ${{ toJSON(github.event.deployment_status) }}
+      # - name: Loging
+      #   run: |
+      #     echo ${{ toJSON(github.event.deployment_status) }}
 
       - name: Notify
         # if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
