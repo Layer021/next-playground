@@ -20,14 +20,14 @@ jobs:
                   "fields": [
                     {
                       "type": "mrkdwn",
-                      "text": "@channel \n *creator-system-front ${{ env.ENV_NAME }}デプロイが${{ env.DEPLOY_RESULT}}しました。* \n ブランチ: ${{ github }}"
+                      "text": "@channel \n *creator-system-front ${{ env.ENV_NAME }}デプロイが${{ env.DEPLOY_RESULT}}しました。* \n ブランチ: ${{ env.BRANCH }}"
                     }
                   ]
                 }
               ]
             }
         env:
-          BRANCH: ${{ github.ref }}
+          BRANCH: ${{ github.ref_name }}
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           ENV_NAME: ${{ github.ref == 'refs/heads/main' && '本番' || 'ステージング' }}
           DEPLOY_RESULT: ${{ github.event.deployment_status.state == 'success' && '完了' || '失敗' }}
