@@ -27,6 +27,7 @@ jobs:
               ]
             }
         env:
+          BRANCH: ${{ github.ref }}
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           ENV_NAME: ${{ github.ref == 'refs/heads/main' && '本番' || 'ステージング' }}
           DEPLOY_RESULT: ${{ github.event.deployment_status.state == 'success' && '完了' || '失敗' }}
