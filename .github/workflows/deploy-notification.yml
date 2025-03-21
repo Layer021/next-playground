@@ -4,17 +4,14 @@ on: [deployment_status]
 
 jobs:
   notify:
+    environment:
+      name: ${{github.event.deployment_status.environment}}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Loging
-        run: |
-          echo ${{ github.event.deployment_status.state }}
-          echo ${{ github.ref }}
-          echo ${{ github.ref_name }}
-          echo ${{ toJson(github.event) }}
-          echo ${{ toJson(github) }}
-
+      # - name: Loging
+      #   run: |
+      #     echo ${{ toJSON(github.event.deployment_status) }}
 
       - name: Notify
         # if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
