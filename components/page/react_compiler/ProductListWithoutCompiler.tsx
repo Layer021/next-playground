@@ -12,6 +12,8 @@ export default function ProductListWithoutCompiler({
   onCommit: (itemId: number) => void;
   registerItemOutput: (itemId: number, output: HTMLOutputElement | null) => void;
 }) {
+  'use no memo';
+
   return (
     <ul className='mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2' aria-label='商品カタログ'>
       {products.map((product) => (

@@ -1,3 +1,5 @@
+import { recordCalculation } from './calculationMetricStore';
+
 export type Product = {
   id: number;
   name: string;
@@ -64,7 +66,10 @@ export const ORDER_RECORDS: OrderRecord[] = Array.from({ length: 60_000 }, (_, i
 export function calculateSalesSummary(
   orders: OrderRecord[],
   period: SalesPeriod,
+  metricId: string,
 ): SalesSummary {
+  recordCalculation(metricId);
+
   const revenueByCategory = new Map<string, number>();
   const revenueByProduct = new Map<string, number>();
   const periodOrders = orders
