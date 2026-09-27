@@ -11,6 +11,11 @@ export default function MainLayout({ children }: Readonly<{ children: React.Reac
         </div>
         <ul className='space-y-2 p-4'>
           <li>
+            <Link href='/sample/react_compiler' className='underline'>
+              React Compiler
+            </Link>
+          </li>
+          <li>
             <Link href='/sample/suspense_fetch' className='underline'>
               Suspense Data Fetching
             </Link>
