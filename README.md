@@ -16,6 +16,16 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## React Compiler demo
+
+Open [http://localhost:3000/sample/react_compiler](http://localhost:3000/sample/react_compiler) to compare compiled and explicitly excluded components.
+
+Run the compiler report to verify that the ON components compile and the OFF components are excluded with `use no memo`:
+
+```bash
+npm run compile-report
+```
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.

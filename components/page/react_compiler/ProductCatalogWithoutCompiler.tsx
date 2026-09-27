@@ -6,6 +6,8 @@ import useCommitMetric from './hooks/useCommitMetric';
 import { INITIAL_PRODUCTS } from './reactCompilerSampleData';
 
 export default function ProductCatalogWithoutCompiler() {
+  'use no memo';
+
   const [cartCount, setCartCount] = useState(0);
   const [lastAddedProductId, setLastAddedProductId] = useState<number | null>(null);
   const { outputRef, registerItemOutput, recordCommit, resetCommitCount } = useCommitMetric();
